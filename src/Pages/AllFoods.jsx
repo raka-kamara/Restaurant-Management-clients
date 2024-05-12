@@ -1,16 +1,31 @@
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
+import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import FoodCart from '../Components/Foods/FoodCart';
 
 const AllFoods = () => {
+  const foodsData = useLoaderData();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filter foods based on search query
+  const filteredFoods = foodsData.filter(food =>
+    food.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div className="bg-[#0B0B0B] h-screen p-10">
+    <div className="bg-[#0B0B0B] p-10">
       <h1 className="text-center text-[#D3A121] text-3xl font-semibold">
-        FlouriCiousBites
+        All Foods ({filteredFoods.length})
       </h1>
 
       <div className="flex items-center justify-center py-5">
-        <label className="input input-bordered w-1/5 flex items-center gap-2">
-          <input type="text" className="grow" placeholder="Search" />
+        <label className="input input-bordered lg:w-1/5 flex items-center gap-2">
+          <input
+            type="text"
+            className="grow"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -26,20 +41,10 @@ const AllFoods = () => {
         </label>
       </div>
 
-      <div className="flex justify-center">
-        <Tabs className="text-white">
-          <TabList>
-            <Tab>Title 1</Tab>
-            <Tab>Title 2</Tab>
-          </TabList>
-
-          <TabPanel>
-            <h2>Any content 1</h2>
-          </TabPanel>
-          <TabPanel>
-            <h2>Any content 2</h2>
-          </TabPanel>
-        </Tabs>
+      <div className="grid lg:grid-cols-3 py-10 gap-10">
+        {filteredFoods.map(food => (
+          <FoodCart key={food._id} food={food}></FoodCart>
+        ))}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import Banner from "../Components/Home/Banner";
 import TopFood from "./TopFood";
 
 const Home = () => {
+    
     return (
         <div className="">
             

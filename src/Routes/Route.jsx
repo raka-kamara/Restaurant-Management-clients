@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Registration from "../Pages/Registration";
 import AllFoods from "../Pages/AllFoods";
+import DetailsFood from "../Components/Foods/DetailsFood";
 
 const router = createBrowserRouter([
     {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
         {
             path: "/",
             element: <Home></Home>,
+            
         },
         {
             path: "/login",
@@ -23,8 +25,13 @@ const router = createBrowserRouter([
             element: <Registration></Registration>,
         },
         {
+            path: "/detailsFood/:id",
+            element: <DetailsFood></DetailsFood>,
+        },
+        {
             path: "/allFoods",
             element: <AllFoods></AllFoods>,
+            loader: ()=> fetch(`${import.meta.env.VITE_API_URL}/foods`),
         },
       ]
     },
