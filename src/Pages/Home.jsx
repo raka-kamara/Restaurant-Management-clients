@@ -1,7 +1,12 @@
+import Banner from "../Components/Home/Banner";
+import TopFood from "./TopFood";
+
 const Home = () => {
     return (
         <div>
-            Hello, Hello            
+            <Banner></Banner>
+            <TopFood></TopFood>
+
         </div>
     );
 };
