@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import img from '../../src/assets/images/logo.png'
+import { AuthContext } from "../Provider/AuthProvider";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const {user, logOut} = useContext(AuthContext)
   const [isOpen, setIsOpen] = useState(false);
+  console.log(user);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -13,10 +17,10 @@ const Navbar = () => {
       <div className="container px-6 py-2 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
-            <a href="#">
-                <img className='w-32' src={img} alt="" />
+            <Link to="/">
+                <img className='w-24' src={img} alt="" />
 
-            </a>
+            </Link>
 
             {/* Mobile menu button */}
             <div className="flex lg:hidden">
@@ -37,10 +41,12 @@ const Navbar = () => {
           {/* Mobile Menu open: "block", Menu closed: "hidden" */}
           <div className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'}`}>
             <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Join Slack</a>
-              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Browse Topics</a>
-              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Random Item</a>
-              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Experts</a>
+              <Link to="/" href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</Link>
+              <Link href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">All Foods</Link>
+              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Gallery</a>
+              
+              {!user &&(
+              <Link to="/login" href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</Link>)}
             </div>
 
             <div className="flex items-center mt-4 lg:mt-0">
@@ -50,13 +56,50 @@ const Navbar = () => {
                 </svg>
               </button>
 
-              <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-                <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                  <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" className="object-cover w-full h-full" alt="avatar" />
-                </div>
-
-                <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">Khatab wedaa</h3>
-              </button>
+              {user && (
+          <div className='dropdown dropdown-end z-50'>
+            <div
+              tabIndex={0}
+              role='button'
+              className='btn btn-ghost btn-circle avatar'
+            >
+              <div title={user?.displayName} className='w-16 rounded-full'>
+                <img
+                  referrerPolicy='no-referrer'
+                  alt='User Profile Photo'
+                  src={user?.photoURL}
+                />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
+            >
+              <li>
+                <Link to='/add-job' className='justify-between'>
+                  Add Job
+                </Link>
+              </li>
+              <li>
+                <Link to='/my-posted-jobs'>My Posted Jobs</Link>
+              </li>
+              <li>
+                <Link to='/my-bids'>My Bids</Link>
+              </li>
+              <li>
+                <Link to='/bid-requests'>Bid Requests</Link>
+              </li>
+              <li className='mt-2'>
+                <button
+                   onClick={logOut}
+                  className='bg-gray-200 block text-center'
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        )}
             </div>
           </div>
         </div>
