@@ -42,12 +42,15 @@ const Banner = () => {
     >
       <div className='flex items-center justify-center w-full h-full bg bg-gray-900/40 rounded-2xl'>
         <div className='text-center'>
-          <h1 className='text-3xl font-semibold text-white lg:text-4xl'>
+        <h1 className='text-3xl font-semibold text-[#D3A121] lg:text-4xl'>
+          FlouriCiousBites
+          </h1>
+          <h1 className='text-xl font-semibold text-white lg:text-4xl'>
           Flourishing Flavors, Biting Bliss!
           </h1>
           <br />
           <Link
-            to='/add-job'
+            to='/allFoods'
           >
             <button className="btn btn-wide bg-[#FAF4E4] ">All Foods</button>
           </Link>
@@ -63,12 +66,15 @@ const Banner = () => {
     >
       <div className='flex items-center justify-center w-full h-full bg-gray-900/40 rounded-2xl'>
         <div className='text-center'>
+        <h1 className='text-3xl font-semibold text-[#D3A121] lg:text-4xl'>
+          FlouriCiousBites
+          </h1>
           <h1 className='text-3xl font-semibold text-white lg:text-4xl'>
           Flourishing Flavors, Biting Bliss!
           </h1>
           <br />
           <Link
-            to='/add-job'
+            to='/allFoods'
           >
             <button className="btn btn-wide bg-[#FAF4E4]  ">All Foods</button>
           </Link>
@@ -83,12 +89,15 @@ const Banner = () => {
     >
       <div className='flex items-center justify-center w-full h-full bg-gray-900/40 rounded-2xl'>
         <div className='text-center'>
+        <h1 className='text-3xl font-semibold text-[#D3A121] lg:text-4xl'>
+          FlouriCiousBites
+          </h1>
           <h1 className='text-3xl font-semibold text-white lg:text-4xl'>
           Flourishing Flavors, Biting Bliss!
           </h1>
           <br />
           <Link
-            to='/add-job'
+            to='/allFoods'
           >
             <button className="btn btn-wide bg-[#FAF4E4] ">All Foods</button>
           </Link>
