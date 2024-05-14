@@ -22,7 +22,7 @@ const AddFood = () => {
 
         const newFood = {name, image, category, quantity, price, origin, userName, email, description};
         
-        console.log(newFood);
+        // console.log(newFood);
         
         fetch(`${import.meta.env.VITE_API_URL}/foods`,{
             method: 'POST',
@@ -34,7 +34,7 @@ const AddFood = () => {
             .then(res=> res.json())
             .then(data =>{
 
-               console.log(data);
+            //    console.log(data);
                if(data.insertedId){
                 Swal.fire({
                     title: 'Success!',

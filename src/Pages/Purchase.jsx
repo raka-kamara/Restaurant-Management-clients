@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import Swal from 'sweetalert2';
+import toast from "react-hot-toast";
 
 
 
@@ -13,6 +14,8 @@ const Purchase = () => {
 
     const handleSubmission = async event =>{
         event.preventDefault()
+        if (user?.email === purchasing.email)
+            return toast.error('You can not buy your own product!')
         const form = event.target;
         const name = form.name.value;
         const quantity = form.quantity.value;
@@ -37,7 +40,7 @@ const Purchase = () => {
             });
           } catch (err) {
             console.log(err)
-            console.log('Hi, i am error', err.message)
+            console.log('Something went wrong', err.message)
           }
         
     }

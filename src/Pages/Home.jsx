@@ -1,4 +1,6 @@
 import Banner from "../Components/Home/Banner";
+import EatEnjoy from "../Components/Home/EatEnjoy";
+import Review from "../Components/Home/Review";
 import TopFood from "./TopFood";
 
 const Home = () => {
@@ -8,6 +10,8 @@ const Home = () => {
             
             <Banner></Banner>
             <TopFood></TopFood>
+            <EatEnjoy></EatEnjoy>
+            <Review></Review>
 
         </div>
     );
