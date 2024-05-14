@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import Swal from 'sweetalert2';
+
 
 
 const Purchase = () => {
@@ -27,7 +29,12 @@ const Purchase = () => {
               `${import.meta.env.VITE_API_URL}/purchase`,
               newFood
             )
-            console.log(data)
+            console.log(data);
+            Swal.fire({
+                icon: 'success',
+                title: 'Purchase Successful!',
+                text: 'Your purchase has been successfully submitted.',
+            });
           } catch (err) {
             console.log(err)
             console.log('Hi, i am error', err.message)
