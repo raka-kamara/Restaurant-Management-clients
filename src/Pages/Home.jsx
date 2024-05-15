@@ -12,7 +12,6 @@ const Home = () => {
                 <title>FlouriciousBites | Home</title>
                 </Helmet>
             <Banner></Banner>
-            <TopFood></TopFood>
             <EatEnjoy></EatEnjoy>
             <Review></Review>
 

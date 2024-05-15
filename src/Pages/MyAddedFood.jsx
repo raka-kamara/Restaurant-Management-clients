@@ -60,7 +60,7 @@ const MyAddedFood = () => {
                             <Link to={`/detailsFood/${p._id}`}>
                                 <button className="btn">View Details</button>
                             </Link>
-                            <Link to={`/update/${p._id}`}><button className="btn">Edit</button></Link>
+                            <Link to={`/edit/${p._id}`}><button className="btn">Edit</button></Link>
                             <button onClick={() => handleDelete(p._id)} className="btn bg-orange-500">X</button>
                         </div>
                     </div>
