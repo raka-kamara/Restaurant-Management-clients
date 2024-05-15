@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Helmet } from "react-helmet";
 const MyOrderedFood = () => {
     const { user } = useContext(AuthContext);
     const [items, setItems] = useState([]);
@@ -42,6 +43,7 @@ const MyOrderedFood = () => {
     };
     return (
         <div>
+            <Helmet><title>FlouriciousBites | MyOrderedFood</title></Helmet>
             {items.map((p) => (
                 <div className="card card-side bg-base-100 shadow-xl mt-5" key={p._id}>
                     <div className="card-body">

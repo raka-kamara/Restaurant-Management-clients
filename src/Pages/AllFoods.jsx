@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import FoodCart from '../Components/Foods/FoodCart';
+import { Helmet } from 'react-helmet';
 
 const AllFoods = () => {
   const foodsData = useLoaderData();
@@ -40,7 +41,7 @@ const AllFoods = () => {
           </svg>
         </label>
       </div>
-
+      <Helmet><title>FlouriciousBites | AllFood</title></Helmet>
       <div className="grid lg:grid-cols-3 py-10 gap-10">
         {filteredFoods.map(food => (
           <FoodCart key={food._id} food={food}></FoodCart>

@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { update } from 'firebase/database';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 
 const Registration = () => {
     const navigate = useNavigate();
@@ -32,6 +33,7 @@ const Registration = () => {
 
     return (
         <div>
+            <Helmet><title>FlouriciousBites | Registration</title></Helmet>
             <div  className="flex w-full max-w-sm mx-auto overflow-hidden my-12 bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl rounded-3xl">
                 <div
                     className="hidden bg-cover lg:block lg:w-1/2"

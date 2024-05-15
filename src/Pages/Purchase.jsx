@@ -4,6 +4,7 @@ import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import Swal from 'sweetalert2';
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 
 
@@ -29,23 +30,33 @@ const Purchase = () => {
 
         try {
             const { data } = await axios.post(
-              `${import.meta.env.VITE_API_URL}/purchase`,
-              newFood
-            )
-            console.log(data);
+                `${import.meta.env.VITE_API_URL}/purchase`,
+                newFood
+            );
+
+            // Update quantity in the database
+            await axios.patch(
+                `${import.meta.env.VITE_API_URL}/foods/${purchasing._id}`, // Assuming there's an ID associated with the food item
+                { $inc: { quantity: -quantity } } // Decrease quantity by the purchased amount
+            );
+
             Swal.fire({
                 icon: 'success',
                 title: 'Purchase Successful!',
                 text: 'Your purchase has been successfully submitted.',
             });
-          } catch (err) {
-            console.log(err)
-            console.log('Something went wrong', err.message)
-          }
-        
+        } catch (err) {
+            console.error('Error:', err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
+        }
     }
     return (
         <div>
+            <Helmet><title>FlouriciousBites | Purchase</title></Helmet>
             <section className="my-10 max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
                 <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
 

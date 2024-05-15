@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from 'sweetalert2';
+import { Helmet } from "react-helmet";
 
 
 const AddFood = () => {
@@ -47,6 +48,7 @@ const AddFood = () => {
     }
     return (
         <div>
+            <Helmet><title>FlouriciousBites | AddFood</title></Helmet>
             <section className="my-10 max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
                 <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
 

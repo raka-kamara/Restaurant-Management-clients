@@ -1,13 +1,15 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import img from "../../src/assets/images/logo.png";
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const{signIn, signInWithGoogle} = useContext(AuthContext);
 
@@ -23,6 +25,7 @@ const Login = () => {
       const result = await signIn(email, password)
       console.log(result)
       toast.success('SignIn Successful')
+      navigate(location?.state ? location.state: '/')
     }
     catch (err){
       console.log(err)
@@ -37,7 +40,7 @@ const Login = () => {
     try{
       await signInWithGoogle()
       toast.success('SignIn Successful')
-      Navigate('/')
+      navigate(location?.state ? location.state: '/')
     }
     catch(err){
       console.log(err)
@@ -47,8 +50,10 @@ const Login = () => {
   const handleFBignIn = e =>{
     e.preventDefault()
   }
+
   return (
     <div>
+      <Helmet><title>FlouriciousBites | Login</title></Helmet>
       <div className="flex w-full max-w-sm mx-auto overflow-hidden my-12 bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl rounded-3xl">
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
           <form onClick={handleSignIn} className="w-full max-w-md">

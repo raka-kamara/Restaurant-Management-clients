@@ -10,6 +10,7 @@ import AddFood from "../Pages/AddFood";
 import MyOrderedFood from "../Pages/MyOrderedFood";
 import MyAddedFood from "../Pages/MyAddedFood";
 import Purchase from "../Pages/Purchase";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -31,19 +32,19 @@ const router = createBrowserRouter([
         },
         {
             path: "/myProfile",
-            element: <MyProfile></MyProfile>,
+            element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute> ,
         },
         {
             path: "/addFood",
-            element: <AddFood></AddFood>,
+            element: <PrivateRoute><AddFood></AddFood></PrivateRoute>,
         },
         {
             path: "/myOrderedFood",
-            element: <MyOrderedFood></MyOrderedFood>,
+            element: <PrivateRoute><MyOrderedFood></MyOrderedFood></PrivateRoute>,
         },
         {
             path: "/myAddedFood",
-            element: <MyAddedFood></MyAddedFood>,
+            element: <PrivateRoute><MyAddedFood></MyAddedFood></PrivateRoute>,
         },
         {
             path: "/purchase/:id",
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
         },
         {
             path: "/detailsFood/:id",
-            element: <DetailsFood></DetailsFood>,
+            element: <PrivateRoute><DetailsFood></DetailsFood></PrivateRoute>,
             loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/foods/${params.id}`),
         },
         {
