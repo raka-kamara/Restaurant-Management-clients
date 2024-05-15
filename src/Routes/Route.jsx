@@ -11,6 +11,7 @@ import MyOrderedFood from "../Pages/MyOrderedFood";
 import MyAddedFood from "../Pages/MyAddedFood";
 import Purchase from "../Pages/Purchase";
 import PrivateRoute from "./PrivateRoute";
+import Gallery from "../Pages/Gallery";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
         {
             path: "/addFood",
             element: <PrivateRoute><AddFood></AddFood></PrivateRoute>,
+        },
+        {
+            path: "/gallery",
+            element: <Gallery></Gallery>,
+            loader: ()=> fetch(`${import.meta.env.VITE_API_URL}/foods`),
         },
         {
             path: "/myOrderedFood",

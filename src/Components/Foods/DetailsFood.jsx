@@ -15,7 +15,7 @@ const DetailsFood = () => {
         <div className="p-6">
           <div>
             <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
-              {food.category}
+             Category: {food.category}
             </span>
             <a
               href="#"

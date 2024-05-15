@@ -34,12 +34,6 @@ const Purchase = () => {
                 newFood
             );
 
-            // Update quantity in the database
-            await axios.patch(
-                `${import.meta.env.VITE_API_URL}/foods/${purchasing._id}`, // Assuming there's an ID associated with the food item
-                { $inc: { quantity: -quantity } } // Decrease quantity by the purchased amount
-            );
-
             Swal.fire({
                 icon: 'success',
                 title: 'Purchase Successful!',
